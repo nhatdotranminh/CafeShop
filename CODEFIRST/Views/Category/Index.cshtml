@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CODEFIRST.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+ //   var category = ViewData.Model;
+}
+
+<div class="grid_12">
+    <h3 class="head2">Our Menu</h3>
+</div>
+
+@*<div class="tabs ">
+        <div id="tab-1" class="tab-content gallery1">
+         @foreach (var item in Model)
+         {
+             <div class="grid_3">
+               <a href="/Category/Menu/@item.Id" ><img src="~/Content/uploads/@item.Image" width="220px" height="200px" alt=""><span></span></a>
+               <div class="col2"><span class="col3"><a href="#">@item.Name</a></span> </div>
+             </div>
+
+         }
+        </div>
+    </div>*@
+<div class="div-tabs">
+
+    <div id="tab-1" class="tab-content gallery1">
+        @foreach (var item in Model)
+        {
+
+            <div class="grid_3">
+                <a  href="/Category/Menu/@item.Id" class="gal"><img src="~/Content/uploads/@item.Image"  width="220px" height="200px" alt=""><span></span></a>
+                <div class="col2"><span class="col3"><a href="#">@item.Name</a></span> </div>
+            </div>
+        }
+
+    </div>
+
+</div>

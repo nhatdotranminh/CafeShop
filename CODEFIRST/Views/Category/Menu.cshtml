@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<CODEFIRST.Models.Product>
+<div class="div-tabs">
+
+    <div id="tab-1" class="tab-content gallery1">
+@foreach (var item in Model)
+{
+
+        <div class="grid_3">
+            <a href="" class="gal"><img src="~/Content/uploads/@item.Image" width="150px" height="150px"alt=""><span></span></a>
+            <div class="col2"><span class="col3"><a href="#">@item.Name</a></span> @item.Price</div>
+            <p>
+                <input type="submit" class="btn btn-danger onlick="AddToCart(@item.Id)" value="Add To Cart"></input>
+                
+            </p>
+        </div>
+}
+
+    </div>
+   
+</div>
+@section Scripts{
+    <!-- Cart -->
+    <script>
+        function AddtoCart(Id) {
+            $.ajax({
+                type: 'Post',
+                url: '/Product/ListCartItem',
+                data: { id: Id },
+                success: function (data) {
+                    $("#Cart_Amount").html(data.ItemAmount)
+                }
+            })
+        }
+    </script>
+ }

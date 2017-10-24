@@ -1,0 +1,58 @@
+﻿@using CODEFIRST.Models;
+@{
+    ViewBag.Title = "ListCartItem";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>ListCartItem</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead></thead>
+        <tbody>
+            @{ 
+                double total = 0;
+                List<CartModel> listCart = (List<CartModel>)Session["CartItem"];
+            }
+            @if (listCart != null)
+            {
+                foreach (var item in (List<CartModel>)Session["CartItem"])
+                {
+                <tr>
+                    <td>
+                        @item.Product.Name
+                    </td>
+                    <td>
+                        @item.Product.Price
+                    </td>
+                    <td>
+                       <img src="~/Content/uploads/@item.Product.Image" alt="" width="80">
+                    </td>
+                    <td class="text-center">
+                        <input type="text" value="@item.Quantity" id="Quantity" class="text-center" style="width:30px"/> &nbsp;
+                    </td>
+                    <td>
+                        @{ 
+                            double value = (double)item.Product.Price * item.Quantity;
+                            total += value;
+                        }
+                        @value
+                    </td>
+                </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7" class="text-right">
+                    <strong> Total:@total</strong>
+
+                </td>
+           </tr>
+        </tfoot>
+        </table>
+    <p class="pull-right">
+        <input type="submit" class="btn btn-info" value="Continue"/> &nbsp;
+        <input type="submit" class="btn btn-danger" value="CheckOut"/>
+    </p>
+</div>
